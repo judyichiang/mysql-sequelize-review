@@ -1,0 +1,17 @@
+const Sequelize = require('sequelize');
+const connection = require('./index');
+
+const Model = connection.define(
+    'Todo',
+    {
+        name: {type: Sequelize.STRING, allowedNull: false},
+    },
+    { timestamps: false },
+);
+
+connection
+    .sync()
+    .then( () => { console.log('Synced with MYSQL Databse')})
+    .catch( err => console.error(err));
+
+module.exports = Model;
